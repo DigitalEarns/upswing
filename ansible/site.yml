@@ -1,4 +1,4 @@
 ---
-  - hosts: all
-    roles:
-      - docker
+- hosts: all
+  roles:
+    - docker
