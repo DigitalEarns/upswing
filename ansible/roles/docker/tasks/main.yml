@@ -2,5 +2,12 @@
 - name: setup repo
   copy: src=docker.repo dest=/etc/yum.repos.d/docker.repo owner=root group=root
 
-- name: Install docker
+- name: install docker
   yum: name=docker-engine state=present
+
+- name: start docker deamon
+  service: name=docker enabled=yes state=started
+
+- name: test if service is running
+  command: docker images
+  changed_when: false
