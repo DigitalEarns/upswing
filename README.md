@@ -13,5 +13,5 @@ to setup the infrastructure.
 
 ```
 cd ansible
-ansible-playbook site.yml -i inventory -u vagrant -s
+ansible-playbook site.yml -i inventory/vagrant -u vagrant -s
 ```
