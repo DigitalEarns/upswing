@@ -1,0 +1,11 @@
+---
+# tasks file for common
+
+- name: install epel-release
+  yum: name=epel-release state=latest
+
+- name: install python-pip
+  yum: name=python-pip state=installed
+
+- name: install docker-python using pip
+  pip: name=docker-py state=latest
