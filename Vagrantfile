@@ -73,7 +73,6 @@ Vagrant.configure(2) do |config|
       node.vm.box = 'centos/7'
       node.vm.hostname = "node-#{i}"
       node.vm.network "private_network", ip: "192.168.44.#{i + 10}"
-      node.vm.synced_folder ".", "/home/vagrant/sync", disabled: true
     end
   end
 end
