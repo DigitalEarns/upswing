@@ -1,0 +1,12 @@
+---
+
+# Various Network Interfaces on the Servers
+private_interface: ansible_eth1
+
+# These will be used in future
+# nat_interface: ansible_eth0
+# public_interface: ansible_eth2
+# management_interface: ansible_eth3
+# local_interface: ansible_lo
+
+kv_store: etcd
