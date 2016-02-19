@@ -5,6 +5,14 @@
 - name: install docker
   yum: name=docker-engine state=present
 
+- name: configure docker unit file
+  template: src=docker.service dest=/etc/systemd/system/docker.service
+  notify:
+    - reload systemd
+    - restart docker
+
+- meta: flush_handlers
+
 - name: start docker deamon
   service: name=docker enabled=yes state=started
 
