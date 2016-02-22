@@ -26,7 +26,7 @@ sudo apt-get install virtualbox
 
 ### Vagrant
 
-The vagrant version comming in ubuntu repository is not the latest one. Two maintain consistency across team we recommend you to run the latest version of softwares listed above.
+The vagrant version comming in ubuntu repository is not the latest one. To maintain consistency across team we recommend you to run the latest version of softwares listed above.
 
 For installing vagrant you should first download the latest vagrant version from https://www.vagrantup.com/downloads.html. You can use the packages for Debian listed in the downloads section.
 
