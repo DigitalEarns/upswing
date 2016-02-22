@@ -63,7 +63,7 @@ sudo apt-get install make
 
 ## Get the source and install
 
-Once you are read with all the pre-requisite softwares, clone the github repository using the git client. If you are planning to contribute back with Pull Requests, you should fork the repository and clone the the fork to your local.
+Once you are done with all the pre-requisite softwares, clone the github repository using the git client. If you are planning to contribute back with Pull Requests, you should fork the repository and clone the the fork to your local.
 
 ```
 git clone https://github.com/DigitalEarns/upswing # replace url with your fork
