@@ -1,4 +1,13 @@
 ---
+
+- hosts: all
+  roles:
+    - common
+
+- hosts: etcd_masters
+  roles:
+    - etcd
+
 - hosts: all
   roles:
     - docker
