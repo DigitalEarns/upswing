@@ -1,0 +1,23 @@
+---
+# tasks file for swarm
+- name: swarm-manager
+  docker:
+    name: swarm-manager
+    image: "{{ swarm_image }}"
+    state: reloaded
+    restart_policy: always
+    net: default
+    ports:
+      - "{{ swarm_port }}:{{ docker_port }}"
+    command: manage --replication --advertise {{ hostvars[inventory_hostname][private_interface].ipv4.address  }}:{{ swarm_port  }} {{ kv_store }}://{% for host in groups['etcd_masters'] %}{{ hostvars[host][private_interface]['ipv4']['address'] }}:{{ kv_store_port }}{% if not loop.last %},{% endif %}{% endfor %}
+  when: "'swarm_managers' in group_names"
+
+- name: swarm-agent
+  docker:
+    name: swarm-agent
+    image: "{{ swarm_image }}"
+    state: reloaded
+    restart_policy: always
+    net: default
+    command: join --advertise {{ hostvars[inventory_hostname][private_interface].ipv4.address  }}:{{ docker_port  }} {{ kv_store }}://{% for host in groups['etcd_masters'] %}{{ hostvars[host][private_interface]['ipv4']['address'] }}:{{ kv_store_port }}{% if not loop.last %},{% endif %}{% endfor %}
+  when: "'swarm_agents' in group_names"
