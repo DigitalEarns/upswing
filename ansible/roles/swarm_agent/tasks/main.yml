@@ -1,0 +1,12 @@
+---
+
+- name: setup swarm agent
+  docker:
+    name: swarm_agent
+    image: swarm
+    state: reloaded
+    net: bridge
+    command: >
+      join
+      --addr={{ hostvars[inventory_hostname][private_interface].ipv4.address }}:{{ docker_port }}
+      etcd://{% for host in groups.etcd_masters %}{{ hostvars[ host ][ private_interface ].ipv4.address }}:{{ etcd_client_port }}/swarm{% if not loop.last %},{% endif %}{% endfor %}

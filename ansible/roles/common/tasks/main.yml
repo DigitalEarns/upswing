@@ -2,7 +2,11 @@
 # tasks file for common
 
 - name: install epel-release
-  yum: name=epel-release state=latest
+  yum: name={{ item }} state=latest
+  with_items:
+    - epel-release
+    - lsof
+    - nc
 
 - name: install python-pip
   yum: name=python-pip state=installed
