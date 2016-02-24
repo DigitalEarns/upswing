@@ -11,3 +11,7 @@
 - hosts: all
   roles:
     - docker
+
+- hosts: all
+  roles:
+    - swarm

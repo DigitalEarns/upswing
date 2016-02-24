@@ -1,0 +1,10 @@
+---
+# defaults file for swarm
+#
+swarm_port: 3375
+docker_port: 2375
+swarm_image: swarm
+
+# kv_store possible options : zk, etcd, consul
+kv_store: etcd
+kv_store_port: 2379

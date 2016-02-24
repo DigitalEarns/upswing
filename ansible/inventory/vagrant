@@ -9,5 +9,16 @@ node-1
 node-2
 node-3
 
+[swarm_managers]
+node-1
+node-2
+
+[swarm_agents]
+node-1
+node-2
+node-3
+node-4
+
+
 [vagrant:children]
 nodes
