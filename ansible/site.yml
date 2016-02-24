@@ -11,3 +11,11 @@
 - hosts: all
   roles:
     - docker
+
+- hosts: swarm_master
+  roles:
+    - swarm_master
+
+- hosts: all
+  roles:
+    - swarm_agent

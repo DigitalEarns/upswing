@@ -1,0 +1,13 @@
+---
+
+- name: setup swarm master
+  docker:
+    name: swarm_master
+    image: swarm
+    state: reloaded
+    net: bridge
+    ports:
+      - "{{ swarm_port }}:{{ docker_port }}"
+    command: >
+      manage
+      etcd://{% for host in groups.etcd_masters %}{{ hostvars[ host ][ private_interface ].ipv4.address }}:{{ etcd_client_port }}/swarm{% if not loop.last %},{% endif %}{% endfor %}
