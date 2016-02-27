@@ -9,5 +9,8 @@ node-1
 node-2
 node-3
 
+[swarm_master]
+node-1
+
 [vagrant:children]
 nodes
