@@ -1,0 +1,15 @@
+---
+# tasks file for common
+
+- name: install epel-release
+  yum: name={{ item }} state=latest
+  with_items:
+    - epel-release
+    - lsof
+    - nc
+
+- name: install python-pip
+  yum: name=python-pip state=installed
+
+- name: install docker-python using pip
+  pip: name=docker-py state=latest

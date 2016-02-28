@@ -1,0 +1,13 @@
+---
+# tasks file for etcd
+
+- name: install etcd from centos extras repository
+  yum: name=etcd state=latest
+
+- name: configure etcd
+  template: src=etcd.conf dest=/etc/etcd/etcd.conf
+  notify:
+    - restart etcd
+
+- name: start etcd service and enable on boot
+  service: name=etcd state=started enabled=true
