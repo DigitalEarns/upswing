@@ -8,7 +8,7 @@ info:
 .PHONY: install
 install:
 	vagrant up
-	cd ansible && ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook -i inventory/vagrant site.yml -s -u vagrant
+	cd ansible && ansible-playbook -i inventory/vagrant site.yml -s -u vagrant
 
 .PHONY: destroy
 destroy:

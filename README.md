@@ -41,3 +41,6 @@ This takes some time to bring up all the machines the first time.
 cd upswing/ansible
 ansible-playbook site.yml -i inventory/vagrant -u vagrant -s
 ```
+
+if you have `make` installed, the above two actions could be achieved by running
+`make install` from the `upswing` directory
