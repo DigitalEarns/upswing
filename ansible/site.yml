@@ -3,19 +3,29 @@
 - hosts: all
   roles:
     - common
+  tags:
+    - common
 
 - hosts: etcd_masters
   roles:
+    - etcd
+  tags:
     - etcd
 
 - hosts: all
   roles:
     - docker
+  tags:
+    - docker
 
-- hosts: swarm_master
+- hosts: swarm_manager
   roles:
-    - swarm_master
+    - swarm_manager
+  tags:
+    - swarm
 
 - hosts: all
   roles:
     - swarm_agent
+  tags:
+    - swarm
