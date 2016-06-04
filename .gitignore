@@ -1,1 +1,4 @@
 .vagrant
+*.cache
+*.retry
+digital_ocean.py

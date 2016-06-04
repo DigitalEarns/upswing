@@ -1,0 +1,19 @@
+## File: /etc/systemd/system/docker.service
+[Unit]
+Description=Docker Application Container Engine
+Documentation=https://docs.docker.com
+After=network.target docker.socket
+Requires=docker.socket
+
+[Service]
+Type=notify
+# FIXME: Find what port should be used in cluster-advertise when not using swarm
+ExecStart=/usr/bin/docker daemon -H tcp://0.0.0.0:{{ docker_port }} -H fd:// --cluster-store="etcd://{% for host in groups['etcd_masters'] %}{{ hostvars[host][private_interface]['ipv4']['address'] }}:2379{% if not loop.last %},{% endif %}{% endfor %}" --cluster-advertise={{ hostvars[inventory_hostname][private_interface].ipv4.address }}:{{ docker_port }}
+MountFlags=slave
+LimitNOFILE=1048576
+LimitNPROC=1048576
+LimitCORE=infinity
+TimeoutStartSec=0
+
+[Install]
+WantedBy=multi-user.target

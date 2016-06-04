@@ -1,0 +1,14 @@
+---
+# tasks file for swarm_manager
+
+- name: setup swarm manager
+  docker:
+    name: swarm_manager
+    image: "{{ swarm_manager_image }}"
+    state: reloaded
+    restart_policy: always
+    net: bridge
+    ports:
+      - "{{ swarm_external_port }}:{{ swarm_internal_port }}"
+    command: >
+      manage --replication --advertise {{ hostvars[inventory_hostname][private_interface].ipv4.address }}:{{ swarm_external_port }} {{ kv_store }}://{% for host in groups['etcd_masters'] %}{{ hostvars[host][private_interface]['ipv4']['address'] }}:{{ kv_store_port }}{% if not loop.last %},{% endif %}{% endfor %}

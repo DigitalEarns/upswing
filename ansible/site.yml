@@ -1,4 +1,57 @@
 ---
-- hosts: all
+
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - block:
+      - set_fact: ansible_user_id={{ lookup('env', 'USER') }}
+
+      - name: ensure ssh key exists
+        user: name={{ ansible_user_id }} generate_ssh_key=yes ssh_key_file=.ssh/id_rsa
+
+      - name: ensure key exists at DigitalOcean
+        digital_ocean: >
+          state=present
+          command=ssh
+          name=upswing_key
+          ssh_pub_key={{ lookup('file', '~/.ssh/id_rsa.pub') }}
+        register: account_ssh_key
+
+      - include: digital_ocean/node_provision.yml node={{ item }} ssh_key_id={{ account_ssh_key.ssh_key.id }}
+        with_items:
+          - {name: node-1, groups: "nodes, etcd_masters, swarm_manager"}
+          - {name: node-2, groups: "nodes, etcd_masters, swarm_manager"}
+          - {name: node-3, groups: "nodes, etcd_masters, swarm_manager"}
+          - {name: node-4, groups: "nodes"}
+      when: "{{ digital_ocean | default(False)}}"
+
+- hosts: nodes
+  roles:
+    - common
+  tags:
+    - common
+
+- hosts: etcd_masters
+  roles:
+    - etcd
+  tags:
+    - etcd
+
+- hosts: nodes
   roles:
     - docker
+  tags:
+    - docker
+
+- hosts: swarm_manager
+  roles:
+    - swarm_manager
+  tags:
+    - swarm
+
+- hosts: nodes
+  roles:
+    - swarm_agent
+  tags:
+    - swarm

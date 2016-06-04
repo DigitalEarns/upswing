@@ -1,0 +1,9 @@
+---
+# defaults file for swarm_agent
+
+swarm_agent_image: swarm
+
+docker_port: 2375
+
+kv_store: etcd
+kv_store_port: 2379

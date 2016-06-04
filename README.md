@@ -41,3 +41,20 @@ This takes some time to bring up all the machines the first time.
 cd upswing/ansible
 ansible-playbook site.yml -i inventory/vagrant -u vagrant -s
 ```
+
+if you have `make` installed, the above two actions could be achieved by running
+`make install` from the `upswing` directory
+
+
+## Deploying to Digital Ocean
+
+* Create a Digital Ocean account
+* [Setup a API TOKEN](https://www.digitalocean.com/community/tutorials/how-to-use-the-digitalocean-api-v2)
+* `export DO_API_TOKEN=<Your API TOKEN>`
+* `make digital_ocean`
+
+This will do the following
+* create an ssh key in you local if it doesn't exist
+* copy the ssh public key to digital ocean account with `name=upswing_key`
+* create 4 instances in the Singapore region
+* setup docker and swarm

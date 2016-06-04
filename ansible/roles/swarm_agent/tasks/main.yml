@@ -1,0 +1,12 @@
+---
+# tasks file for swarm_agent
+
+- name: setup swarm agent
+  docker:
+    name: swarm_agent
+    image: "{{ swarm_agent_image }}"
+    state: reloaded
+    restart_policy: always
+    net: bridge
+    command: >
+      join --advertise {{ hostvars[inventory_hostname][private_interface].ipv4.address }}:{{ docker_port }} {{ kv_store }}://{% for host in groups['etcd_masters'] %}{{ hostvars[host][private_interface]['ipv4']['address'] }}:{{ kv_store_port }}{% if not loop.last %},{% endif %}{% endfor %}

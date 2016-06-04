@@ -1,0 +1,10 @@
+---
+# defaults file for swarm_manager
+
+kv_store: etcd
+kv_store_port: 2379
+
+swarm_internal_port: 2375
+swarm_external_port: 3375
+
+swarm_manager_image: swarm

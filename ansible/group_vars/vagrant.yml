@@ -1,0 +1,17 @@
+---
+
+# Various Network Interfaces on the Servers
+private_interface: ansible_eth1
+
+# These will be used in future
+# nat_interface: ansible_eth0
+# public_interface: ansible_eth2
+# management_interface: ansible_eth3
+# local_interface: ansible_lo
+
+kv_store: etcd
+
+## Port details
+etcd_client_port: 2379
+docker_port: 2375
+swarm_port: 3375
