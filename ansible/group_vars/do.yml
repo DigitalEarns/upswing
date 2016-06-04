@@ -1,0 +1,7 @@
+---
+
+private_interface: ansible_eth1
+kv_store: etcd
+etcd_client_port: 2379
+docker_port: 2375
+swarm_port: 3375
