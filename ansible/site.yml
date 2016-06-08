@@ -55,3 +55,21 @@
     - swarm_agent
   tags:
     - swarm
+
+- hosts: influxdb_server
+  roles:
+    - influxdb
+  tags:
+    - influxdb
+
+- hosts: all
+  roles:
+    - telegraf
+  tags:
+    - telegraf
+
+- hosts: grafana_server
+  roles:
+    - grafana
+  tags:
+    - grafana

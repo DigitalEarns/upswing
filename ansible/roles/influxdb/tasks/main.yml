@@ -1,0 +1,14 @@
+---
+- name: configure influxdb repo
+  copy: src=influxdb.repo dest=/etc/yum.repos.d/influxdb.repo owner=root group=root
+
+- name: install influxdb
+  yum: name=influxdb-{{ influxdb.version }} state=present
+
+- name: start influxdb
+  service: name=influxdb enabled=yes state=started
+
+- name: edit influxdb conf
+  template: src=influxdb.conf.j2 dest={{ influxdb.conf_dir }}/influxdb.conf
+  notify:
+    - restart influxdb

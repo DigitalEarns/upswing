@@ -12,3 +12,9 @@ node-[1:3]
 
 [vagrant:children]
 nodes
+
+[influxdb_server]
+node-1
+
+[grafana_server]
+node-1

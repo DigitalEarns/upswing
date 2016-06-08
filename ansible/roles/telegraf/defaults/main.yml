@@ -1,0 +1,9 @@
+---
+# defaults file for telegraf
+telegraf:
+  version: 0.13.1-1
+  conf_dir: /etc/telegraf
+  db:
+    name: upswing
+    admin: admin
+    admin_password: admin123

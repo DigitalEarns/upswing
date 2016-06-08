@@ -1,0 +1,8 @@
+---
+# defaults file for influxdb
+influxdb:
+  version: 0.13.0-1
+  host: 192.168.44.11
+  port: 8086
+  root: /var/lib/influxdb
+  conf_dir: /etc/influxdb

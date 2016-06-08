@@ -1,0 +1,10 @@
+---
+# defaults file for grafana
+grafana:
+  version: 3.0.1-1
+  host: 192.168.44.11
+  port: 3000
+  admin: admin
+  admin_password: admin
+  conf_dir: /etc/grafana
+  root: /var/lib/grafana

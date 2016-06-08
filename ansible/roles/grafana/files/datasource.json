@@ -1,0 +1,14 @@
+
+{
+"name":"upswing_telegraf",
+"type":"influxdb",
+"access":"direct",
+"isDefault":true,
+"url":"http://{{ influxdb.host }}:{{ influxdb.port }}",
+"user":"{{ telegraf.db.admin }}",
+"password":"{{ telegraf.db.admin_password }}",
+"database":"{{ telegraf.db.name }}",
+"basicAuth":false,
+"basicAuthUser":"",
+"basicAuthPassword":""
+}
