@@ -1,0 +1,9 @@
+localhost digital_ocean=True
+
+[nodes]
+
+[nodes:vars]
+digital_ocean=True
+
+[do:children]
+nodes
