@@ -1,0 +1,5 @@
+[grafana]
+name=grafana
+baseurl=https://packagecloud.io/grafana/stable/el/6/$basearch
+enabled=1
+gpgcheck=0

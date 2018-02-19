@@ -1,0 +1,15 @@
+---
+
+- name: configure telegraf repo
+  copy: src=roles/influxdb/files/influxdb.repo dest=/etc/yum.repos.d/influxdb.repo owner=root group=root
+
+- name: install telegraf
+  yum: name=telegraf-{{ telegraf.version }} state=present
+
+- name: start telegraf deamon
+  service: name=telegraf enabled=yes state=started
+
+- name: configure telegraf to report to influxdb
+  template: src=telegraf.conf.j2 dest={{ telegraf.conf_dir }}/telegraf.conf
+  notify:
+    - restart telegraf

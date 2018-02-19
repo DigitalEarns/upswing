@@ -15,3 +15,11 @@ kv_store: etcd
 etcd_client_port: 2379
 docker_port: 2375
 swarm_port: 3375
+
+influxdb:
+  host: 192.168.44.11
+  port: 8086
+
+grafana:
+  host: 192.168.44.11
+  port: 3000
